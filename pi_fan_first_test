@@ -1,20 +1,25 @@
-import busio
-import digitalio
 import board
-import time
+from time import sleep
 
 
 # GPIO.setmode(GPIO.BOARD)      # need this?
-#import RPi.GPIO as GPIO        # need this?
+
+import RPi.GPIO as GPIO        # need this?
 
 
 
-# CODE FOR FAN
-# This is what we found while doing the servo motor
+# CODE FOR LED
 
-pin = digitalio.DigitalInOut(board.D26)			#gpio/bcm number (not board number)
-pin.direction = digitalio.Direction.OUTPUT
+fan = 26
 
-pin.value = True
+GPIO.setmode(GPIO.BCM) 			# initializes that 26 is the GPIO26 pin
+GPIO.setup(fan, GPIO.OUT)
 
-print("test")
+
+while True:
+	
+	GPIO.output(fan, GPIO.HIGH)
+	print("Fan on")
+	
+GPIO.cleanup()
+	
